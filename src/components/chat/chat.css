@@ -1,0 +1,103 @@
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.chatBoxCon1 {
+  margin: 0 auto;
+}
+.btnBottom {
+  width: 100%;
+  position: fixed;
+  bottom: 0.3em;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+}
+.btnBottom button {
+  width: 30%;
+  min-width: 300px;
+  background-color: #fafafa;
+  color: #4cd964;
+}
+.chatBoxCon2 {
+  /* max-width: 900px; */
+  margin: 0 auto;
+}
+.chatBoxCon2Box {
+  background-color: #4cd964;
+  overflow-x: hidden;
+  height: 100vh;
+  overflow-y: auto;
+}
+.statusVideoProcess {
+  background-color: #ffffff;
+  height: auto;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+}
+.boxChatr {
+  /* background-color: #4cd964; */
+  /* background-color: #030303 !important; */
+}
+
+.boxChatr1 {
+  background-color: #fafafa;
+  height: 100vh;
+  overflow-y: auto;
+  /* overflow: hidden !important; */
+}
+.tagVideoTitle {
+  background-color: #fff;
+}
+.inputBoxChat {
+  position: fixed;
+  bottom: 0;
+  z-index: 40;
+}
+.listening::before {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff81;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.4);
+  border-radius: 50%;
+  animation: listening infinite 1.5s;
+}
+.headerChatBox {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  background-color: rgb(12, 0, 0);
+  border-bottom: 1px dotted white;
+  width: 100%;
+}
+.chatTitle h5 {
+  text-transform: uppercase !important;
+  color: #4cd964;
+  font-weight: bold;
+}
+.pauseBtn {
+  cursor: pointer;
+
+  font-size: 20px;
+}
+.fadeLoader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000000000000;
+}
+.loaderBoxFade {
+  width: 100%;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* top: 50px;
+  left: 41%; */
+}

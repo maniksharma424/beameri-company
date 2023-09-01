@@ -1,0 +1,62 @@
+.sidebar a.active {
+  background: linear-gradient(to right, #5772fe, #6d85fb) !important;
+}
+.chatBot {
+  position: relative;
+  inset: 0;
+}
+.chatBox {
+  position: fixed;
+  bottom: 1em;
+  right: 2em;
+  z-index: 10;
+  background-color: #5772fe;
+  min-width: 50px;
+  height: 50px;
+  border-radius: 50% 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white !important;
+}
+.chatBoxContainer {
+  position: absolute;
+  bottom: -20em;
+  z-index: 5;
+  height: 60vh;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow-y: scroll;
+  min-width: 20%;
+  right: 2em;
+  padding: 0.5em;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.formChatBox {
+  width: calc(100% - 15px);
+  position: absolute;
+  bottom: -1em;
+}
+.chatQuery {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 10px;
+}
+.chatQuery span {
+  display: block;
+  word-wrap: break-word;
+  margin-bottom: 1em;
+  border: 1px solid rgb(38, 32, 32);
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+.leftChatBox {
+  max-width: 45%;
+}
+.rightChatBox {
+  max-width: 45%;
+  margin-top: 1em;
+}
