@@ -7,7 +7,7 @@ function Footer() {
         <div className="col-lg-12">
           <div className="footer">
             <p>
-              2018 © Admin Board. - <a href="#">example.com</a>
+              2024 © Branch Manager Board. - <a href="/">Branch Managar</a>
             </p>
           </div>
         </div>

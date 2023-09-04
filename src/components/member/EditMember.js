@@ -6,8 +6,8 @@ import { useMutation, useQuery } from "react-query";
 import { errorMessage, successMessage } from "../../utils/Toast";
 import { BtnSpinner } from "../../utils/BtnSpinner";
 import { editMember, getMemberSingle } from "../../axios/member";
-import LoaderBox from "../../utils/LoaderBox";
 import { timeDate } from "../../utils/formateDate";
+import { apiError } from "../../utils/apiError";
 
 function Editmember() {
   const navigate = useNavigate();
@@ -63,12 +63,12 @@ function Editmember() {
         mutation.mutate(member);
       }
     } catch (error) {
-      errorMessage(error?.message);
+      apiError(error);
     }
   };
 
   if (isError) {
-    errorMessage(error?.message);
+    apiError(error);
   }
 
   if (mutation.isSuccess) {

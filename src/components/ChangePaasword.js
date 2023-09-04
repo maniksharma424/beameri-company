@@ -4,6 +4,7 @@ import { errorMessage, successMessage } from "../utils/Toast";
 import { BtnSpinner } from "../utils/BtnSpinner";
 import { updatePassword } from "../axios/singin";
 import { useMutation } from "react-query";
+import { apiError } from "../utils/apiError";
 
 function ChangePaasword() {
   const [reset, setReset] = useState({
@@ -43,7 +44,7 @@ function ChangePaasword() {
         });
       }
     } catch (error) {
-      errorMessage(error.message);
+      apiError(error);
     }
   };
 
@@ -51,7 +52,7 @@ function ChangePaasword() {
     successMessage("Reset password successfully");
   }
   if (isError) {
-    errorMessage(error.message);
+    apiError(error);
   }
 
   return (

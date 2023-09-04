@@ -6,6 +6,7 @@ import { useMutation } from "react-query";
 import { errorMessage, successMessage } from "../../utils/Toast";
 import { createMember } from "../../axios/member";
 import { BtnSpinner } from "../../utils/BtnSpinner";
+import { apiError } from "../../utils/apiError";
 
 function Createmember() {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ function Createmember() {
         });
       }
     } catch (error) {
-      errorMessage(error.message);
+      apiError(error);
     }
   };
 

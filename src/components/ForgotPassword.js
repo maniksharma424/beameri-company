@@ -4,6 +4,7 @@ import { forgotPassword } from "../axios/singin";
 import { useMutation } from "react-query";
 import { BtnSpinner } from "../utils/BtnSpinner";
 import { useNavigate } from "react-router-dom";
+import { apiError } from "../utils/apiError";
 
 function ForgotPassword() {
   const emailRef = useRef("");
@@ -28,7 +29,7 @@ function ForgotPassword() {
         });
       }
     } catch (error) {
-      errorMessage(error.message);
+      apiError(error);
     }
   };
 

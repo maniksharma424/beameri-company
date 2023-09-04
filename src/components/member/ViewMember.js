@@ -3,9 +3,9 @@ import WrapperContent from "../../WrapperContent";
 import { useParams } from "react-router-dom";
 import { getMemberSingle } from "../../axios/member";
 import { useQuery } from "react-query";
-import { errorMessage } from "../../utils/Toast";
 import LoaderBox from "../../utils/LoaderBox";
 import { formatDate } from "../../utils/formateDate";
+import { apiError } from "../../utils/apiError";
 
 function Viewmember() {
   const { id } = useParams();
@@ -16,7 +16,7 @@ function Viewmember() {
   );
 
   if (isError) {
-    errorMessage(error.message);
+    apiError(error);
   }
 
   return (

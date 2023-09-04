@@ -8,6 +8,7 @@ import { useQueryClient, useMutation, useQuery } from "react-query";
 import LoaderBox from "../../utils/LoaderBox";
 import Avatar from "react-avatar";
 import { formatDate } from "../../utils/formateDate";
+import { apiError } from "../../utils/apiError";
 
 function Member() {
   const queryClient = useQueryClient();
@@ -23,7 +24,7 @@ function Member() {
   });
 
   if (isError) {
-    errorMessage(error?.message);
+    apiError(error);
   }
   if (mutation.isError) {
     errorMessage(

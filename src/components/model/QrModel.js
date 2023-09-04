@@ -43,13 +43,6 @@ function QrModel({ open, handleClose }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => handleDownload()}
-            disabled={loader}
-          >
-            {loader ? <BtnSpinner /> : "Download"}
-          </Button>
         </Modal.Footer>
       </Modal>
     </>

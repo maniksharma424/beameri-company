@@ -14,51 +14,21 @@ export const fetchData = async (text) => {
       storageId != null && storageId != "undefined"
         ? JSON.parse(localStorage.getItem("audio"))
         : "2EiwWnXFnvU5JabPnv8n";
-    // audioId =
-    //   audioId === "undefined" || audioId === null
-    //     ? "s3://voice-cloning-zero-shot/e2ee110d-86a6-415c-ad55-04f1a2e5af76/sap/manifest.json"
-    //     : audioId;
 
     if (true) {
       const body = {
         text: text,
         voiceId: audioId,
       };
-      // const response = await axios.post(`${API}/api/playht/clone`, {
       const response = await axios.post(
         `${API}/elevenlabs/text-to-speak`,
-        // `https://api.elevenlabs.io/v1/text-to-speech/${audioId}`,
         body
       );
-
-      // await axios.post(
-      //   `${API}/api/elevenlabs/text-to-speak`,
-      //   {
-      //     voiceId: "21m00Tcm4TlvDq8ikWAM",
-      //     text: text,
-      //   }
-      //   {
-      //     responseType: "arraybuffer",
-      //   }
-      // );
 
       if (response.status === 200) {
         localStorage.setItem("myAudioMp3", JSON.stringify(response.data?.data));
         aud.src = response.data?.data;
         aud.play();
-
-        // const audioData = response.data;
-
-        // const audioBlob = new Blob([audioData], { type: "audio/mpeg" });
-        // const audioBlobUrl = URL.createObjectURL(audioBlob);
-
-        // const audioElement = new Audio();
-        // audioElement.src = audioBlobUrl;
-        // audioElement.play();
-
-        // audioElement.onended = () => {
-        //   URL.revokeObjectURL(audioBlobUrl);
-        // };
       } else {
         errorMessage("audio not found");
       }

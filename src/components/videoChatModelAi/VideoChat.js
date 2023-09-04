@@ -189,7 +189,6 @@ function VideoChat() {
       setLogs("");
       setStartedAt("");
       setVoiceLoading(true);
-      alert(imageURL);
       const payload = {
         image_url: imageURL,
         audio_url: audio_url,
@@ -337,11 +336,6 @@ function VideoChat() {
     scrollToBottom();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
-
-  // useEffect(() => {
-  // navigate(tab, { replace: true });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [tab]);
 
   const PlayVideo = useCallback(() => {
     return (
