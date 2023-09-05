@@ -53,14 +53,11 @@ function App() {
   // Footer
   const RenderFooter = () => {
     if (
+      token &&
       window.location.pathname !== "/chat" &&
       window.location.pathname !== "/branch-chat"
     ) {
-      return (
-        <React.Fragment>
-          <Footer />
-        </React.Fragment>
-      );
+      return <React.Fragment>{/**d="main-content" */}</React.Fragment>;
     } else {
       return;
     }
