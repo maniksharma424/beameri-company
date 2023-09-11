@@ -49,6 +49,11 @@ function SideHeader() {
                   <i className="ti-user"></i> Branch Chat{" "}
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/conversations" className="sidebar-sub-toggle">
+                  <i className="ti-wheelchair"></i> conversations{" "}
+                </NavLink>
+              </li>
 
               {/*<li>
                 <NavLink to="app-event-calender.html">

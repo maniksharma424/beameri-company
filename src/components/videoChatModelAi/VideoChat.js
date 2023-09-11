@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { errorMessage, successMessage } from "../../utils/Toast";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import LoaderBox, { FadeLoaderBox } from "../../utils/LoaderBox";
 
 import axios from "axios";
@@ -11,12 +11,18 @@ import { getAllArticles } from "../../axios/article";
 import { createChatCompletionFn } from "../chat/chatCompletion";
 import { API } from "../../utils/api";
 import { getAvatarActive, getVoiceActive } from "../../axios/chat-active-file";
+import {
+  createConversation,
+  updateConversation,
+} from "../../axios/conversation";
 
 const reciever = [];
 const url = "https://api.openai.com/v1/audio/transcriptions";
 let pauseBtn = false;
 
 function VideoChat() {
+  const queryClient = useQueryClient();
+
   const navigate = useNavigate();
   const { search } = useLocation();
   const [spinner, setSpinner] = useState(false);
@@ -26,6 +32,7 @@ function VideoChat() {
   const [listen, setListen] = useState("");
   const [transcription, setTranscription] = useState("");
   const [recordedAudio, setRecordedAudio] = useState(null);
+  const [answer, setAnswer] = useState("");
   const mediaRecorderRef = useRef(null);
   const messagesEndRef = useRef(null);
 
@@ -69,6 +76,20 @@ function VideoChat() {
     isSuccess: isVoiceSuccess,
     data: voiceActiveData,
   } = useQuery("voice", getVoiceActive);
+
+  // for conversation
+  const mutation = useMutation((text) => createConversation(text), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("conversation");
+    },
+  });
+
+  // for conversation answer
+  const mutationAns = useMutation((text) => updateConversation(text), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("conversation");
+    },
+  });
 
   const avtarData = useQuery("avatar", getAvatarActive);
 
@@ -118,11 +139,17 @@ function VideoChat() {
           exercise?.data?.data,
           article?.data?.data
         );
+        // push to database
+        mutation.mutate({ question: text });
         if (data) {
           reciever.push({ data: data, name: "ASSISTANT" });
           setLoading(true);
           pauseBtn = true;
           textToVoiceApi(data);
+          setAnswer(data);
+
+          // send to conversation to answer
+          // mutation.mutate({ answer: data,id:"" });
         } else {
           errorMessage("Transcription failed!");
         }
@@ -332,6 +359,30 @@ function VideoChat() {
     });
   };
 
+  // conversation error
+  if (mutation.isError) {
+    errorMessage(
+      mutation.error?.response?.data?.message || mutation.error?.message
+    );
+  }
+  if (mutationAns.isError) {
+    errorMessage(
+      mutationAns.error?.response?.data?.message || mutationAns.error?.message
+    );
+  }
+
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      if (answer) {
+        mutationAns.mutate({
+          id: mutation.data?.data?.data?._id,
+          answer: answer,
+        });
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mutation.isSuccess]);
   useEffect(() => {
     scrollToBottom();
     // eslint-disable-next-line react-hooks/exhaustive-deps

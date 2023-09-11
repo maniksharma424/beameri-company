@@ -16,6 +16,7 @@ import OtpVerify from "./components/VerifyOtp";
 import NewPassword from "./components/NewPassword";
 import Chat from "./components/chat/Chat";
 import VideoChat from "./components/videoChatModelAi/VideoChat";
+import Conversation from "./components/conversation/Conversation";
 
 function App() {
   const navigate = useNavigate();
@@ -84,6 +85,7 @@ function App() {
         <Route path="/new-password" element={<NewPassword />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/branch-chat" element={<VideoChat />} />
+        <Route path="/conversations" element={<Conversation />} />
 
         <Route exact path="/" element={<Protected />}>
           <Route path="changePassword" element={<ChangePaasword />} />
