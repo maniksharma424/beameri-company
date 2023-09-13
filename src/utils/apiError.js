@@ -8,4 +8,6 @@ export const apiError = (error) =>
     pauseOnHover: true,
     progress: undefined,
     theme: "light",
+    
   });
+
