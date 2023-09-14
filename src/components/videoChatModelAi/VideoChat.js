@@ -277,7 +277,7 @@ function VideoChat() {
       //     ? "s3://voice-cloning-zero-shot/e2ee110d-86a6-415c-ad55-04f1a2e5af76/sap/manifest.json"
       //     : audioId;
       audioId =
-        audioId != null && audioId != "undefined"
+        audioId !== null && audioId !== "undefined"
           ? JSON.parse(localStorage.getItem("audio"))
           : "2EiwWnXFnvU5JabPnv8n";
 
